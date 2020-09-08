@@ -2,9 +2,14 @@ import cv2
 
 thres = 0.5 #threshold to detect object
 
-cap = cv2.VideoCapture(0, cv2.CAP_MSMF)
-cap.set(3,640)
-cap.set(4,480)
+windowName = "Live"
+cv2.namedWindow(windowName, cv2.WINDOW_NORMAL)
+cv2.setWindowProperty(windowName,cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
+
+cap = cv2.VideoCapture(0)
+#cap.set(3,640)
+#cap.set(4,480)
+
 
 classNames = []
 classFile = 'object_labels.names'
@@ -32,5 +37,11 @@ while True:
             label = "{}: {:.2f}%".format( classNames[classId-1], confidence * 100)
             cv2.putText(img, label, (box[0] + 0, box[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
 
-    cv2.imshow("Output", img)
-    cv2.waitKey(1)
+    cv2.imshow(windowName, img)
+    
+    if cv2.waitKey(1) & 0xFF == ord('q'): # Press 'q' to exit program
+        exit()
+    
+    
+    
+    
