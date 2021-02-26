@@ -17,7 +17,7 @@ with open(classFile, 'rt') as f:
 #print(classNames)
 
 configPath = 'ssd_mobilenet_v3_large.pbtxt'
-weightspath = 'pre_trained_model.pb'
+weightspath = 'ssd_mobilenet_v3_large_coco_2020_01_14.pb'
 
 net = cv2.dnn_DetectionModel(weightspath, configPath)
 net.setInputSize(320, 320)
